@@ -47,6 +47,7 @@ INSTALLED_APPS = (
     'treebeard',
     'menus',
     'sekizai',
+    'djangocms_text_ckeditor',
 )
 
 MIDDLEWARE_CLASSES = (
