@@ -72,6 +72,12 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'mysite.urls'
 
+WSGI_APPLICATION = 'mysite.wsgi.application'
+
+
+# Templates
+# https://docs.djangoproject.com/en/1.8/ref/settings/#templates
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -94,8 +100,6 @@ TEMPLATES = [
         },
     },
 ]
-
-WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
 # Database
