@@ -6,16 +6,15 @@ Themes 101 - Installation
 Foreword
 --------
 
-The goal is to setup django CMS and django-cms-explorer with the bare minimum
-to have a starting project to develop our new `Freelancer
-<http://startbootstrap.com/template-overviews/freelancer/>`_ theme with it.
-
-We are using Django 1.8.8 (latest LTS) and django CMS 3.2.x for this a tutorial
-with Pythin 2.7 and OSX.
+The goal is to setup django CMS and implement the `Freelancer
+<http://startbootstrap.com/template-overviews/freelancer/>`_.
 
 Please ensure your system is setup to run Python and Django. Resources for this
 can be found for Python within `Python For Beginners <https://www.python.org/about/gettingstarted/>`_
 and Django within the `Quick install guide <https://docs.djangoproject.com/en/1.9/intro/install/>`_.
+
+We are using Django 1.8.8 (latest LTS) and django CMS 3.2.x for this a tutorial
+with Pythin 2.7 and OSX.
 
 If you have problems understanding ``middlewares`` or certain mechanics within Django
 and Python, I recommend starting to `Learn Python the hard way <http://learnpythonthehardway.org/>`_
@@ -88,6 +87,11 @@ Adapt settings according to the `instructions
 #. change the default ``LANGUAGE_CODE`` value to ``en`` to match the django CMS ``LANGUAGES`` setting
 #. Cleanup the file a bit (templates...)
 
+One last step requires you to install a ``TextPlugin``. We will be using
+`djangocms-text-ckeditor <https://github.com/divio/djangocms-text-ckeditor>`_
+as default text plugin. Simply add ``djangocms_text_ckeditor`` to your
+``INSTALLED_APPS``.
+
 Next move to configure your urls, modify the ``project/mysite/urls.py`` to include
 the `recommended url pattern <http://docs.django-cms.org/en/develop/how_to/install.html#url-configuration>`_.
 
@@ -103,7 +107,46 @@ Running django CMS
 
 #. run ``python manage.py migrate``
 #. run ``python manage.py runserver``
+#. visit `http://localhost:8000/ <http://localhost:8000/>`_ to open django CMS
 
-You know have a running django CMS installation, visit ``/admin`` to checkout
-the admin view or play around with the frontend by enabling the toolbar using
-``?edit``.
+You know have a running django CMS installation. You will be greeted with the
+django CMS installation screen once you have logged in using admin/admin.
+
+We need to add our first page to disable the installation screen. This screen
+will always appear if there are no pages around. Let's add ``Home`` as title
+and ``Hello World`` as example content. The content field will always add
+a text plugin to the created page.
+
+After this, make sure the page is published by clicking on "Publish page now".
+This might not be available, which indicates that the page is already published.
+Instead you will find the "View published" button.
+
+
+Lets configure
+--------------
+
+We will be using the "Start Bootstrap" theme through the entire tutorial. The
+theme has the following pagetree structure::
+
+    - Portfolio
+    - About
+    - Contact
+
+Let's add these pages through the CMS. For this we go to example.com > Pages and add
+them. Let's publish all of them and ensure they are visible within the menu.
+Disable the menu option for home, as our logo will later display that.
+
+Next let's configure some settings. Go to example.com > Admin. As you can see
+we currently have our site named "example.com" you can easily change this within
+"Sites". django CMS provides multi site support, for now we only need one.
+Let's get in there and change the "Display Name" to "Site" so we can reference
+that menu entry easier. After hitting save and a refresh you'll already see
+the result.
+
+That's it from a configurations perspective, pretty simple or?
+
+Note that the toolbar can always be enabled by appending ``/?edit`` to the url
+or ``/?edit_off`` to disable it.
+If you whish to disable the toolbar entirely, just got to Site > Disable Toolbar.
+Certain states are stored within django CMS, such as if the side frame is open,
+which pages you opened or if the toolbar is visible or not etc.
