@@ -8,6 +8,9 @@
         {% cms_toolbar %}
         {% placeholder base_content %}
         {% block base_content %}{% endblock %}
+
+        hello world {{ LANGUAGE_CODE }}
+
         {% render_block "js" %}
     </body>
 </html>
