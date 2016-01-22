@@ -19,6 +19,11 @@ To achieve this objective, you will learn:
 - how templates and static files are created, modified and maintained
 - how content management is handled
 
+This is a recording without self updating features. As such I might show
+outdated versions of Django or django CMS over time. I will be adding youtube
+annotations on sections that are outdated or different or release an update
+video later on depending on the severity of the changes.
+
 
 Requirements
 ------------
