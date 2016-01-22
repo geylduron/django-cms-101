@@ -6,31 +6,70 @@ Themes 101 - Installation
 Foreword
 --------
 
-The goal is to setup django CMS and implement the `Freelancer
-<http://startbootstrap.com/template-overviews/freelancer/>`_.
+Welcome to Themes 101, a new format I'm starting in a set of django CMS 101
+tutorials for beginners. I'm Angelo, happy employee at Divio AG and core
+developer of the django CMS since 2011.
 
-Please ensure your system is setup to run Python and Django. Resources for this
-can be found for Python within `Python For Beginners <https://www.python.org/about/gettingstarted/>`_
-and Django within the `Quick install guide <https://docs.djangoproject.com/en/1.9/intro/install/>`_.
+The main goal of this tutorial will be to setup django CMS and implement the `Freelancer
+<http://startbootstrap.com/template-overviews/freelancer/>`_ Bootstrap theme [Showcase].
 
-We are using Django 1.8.8 (latest LTS) and django CMS 3.2.x for this a tutorial
-with Pythin 2.7 and OSX.
+To achieve this objective, you will learn:
 
-If you have problems understanding ``middlewares`` or certain mechanics within Django
-and Python, I recommend starting to `Learn Python the hard way <http://learnpythonthehardway.org/>`_
-or studying the `Django documentation <https://www.djangoproject.com/start/>_`.
-
-We are also using `virtualenv <https://virtualenv.readthedocs.org/en/latest/>`_ to create an
-environment that has its own installation directories, that doesn't share libraries
-with other projects or your system. There are other alternatives such as Docker,
-for this tutorial we follow a simple path.
-
-You can check if your system does run Django once we test the installation locally
-on the next two steps:
+- how to install Django and the django CMS by hand and configure your setup
+- how templates and static files are created, modified and maintained
+- how content management is handled
 
 
-Setup the project locally
--------------------------
+Requirements
+------------
+
+The tutorials will be recorded on the OSX environments, as such installation
+instructions might need adaptions according to your system.
+
+You require a working Python and Django environment. If you are unsure about
+your setup, please head over to `Python For Beginners <https://www.python.org/about/gettingstarted/>`_
+and the very helpful `Quick install guide <https://docs.djangoproject.com/en/1.9/intro/install/>`_
+from Django for additional information. You will figure out at the very beginning
+of the first part of Themes 101 if you statisfy these requirements.
+
+Anything that will strive away from the default installation, will be mentioned
+specifically. I will be using:
+
+- Python 2.7.5 (default OSX 10.11 version)
+- Django 1.8.8 (latest 1.8.x LTS as of this recording)
+- django CMS 3.2.0 (latest stable django CMS, though we will switch to develop)
+
+In addition to this, I will be using `virtualenv <https://virtualenv.readthedocs.org/en/latest/>`_
+to create an environment that has its own installation directories, that doesn't
+share libraries with other projects or your system. This will prevent version
+conflicts and errors that might happen between your local project and system
+wide settings. There are also other alternatives available such as Docker.
+
+
+Alternatives for the setup
+--------------------------
+
+This tutorial is based on a manual installation by hand. This will allow you to
+get familiar with settings, configuration, requirements and maintanance from
+a beginners perspective.
+
+There are far simpler methods available to get started with such as the
+`djangocms-installer <https://github.com/nephila/djangocms-installer>`_ that
+serves as cookie cutter django CMS installation or Divio's own `Aldryn Cloud <aldryn.com>`_
+for a near-complete hosted solution.
+
+
+First steps
+-----------
+
+Let's see if your system fullfills the above mentioned requirements. Download the `repository
+<https://github.com/divio/django-cms-101>`_ either through ``git clone``, if you
+have `Git <https://help.github.com/articles/set-up-git/>`_ installed, or by downloading the
+`ZIP file <https://github.com/divio/django-cms-101/archive/master.zip>`_ provided by
+GitHub.
+
+Once you have setup the repository, place it into your working space, open your
+Terminal and ``cd`` to that folder. Next we need to run some commands:
 
 #. cd ``themes-101/project``
 #. run ``virtualenv env``
@@ -39,13 +78,20 @@ Setup the project locally
    or ``vf activate django-cms-101`` for virtualfish
 #. run ``pip install -r requirements.txt``
 
-You can also simply install the cms locally using the latest develop state by
-checking out the repository, ``pip uninstall django-cms`` and then
-``pip install -e ../path/to/repository/django-cms``.
+We want to use the latest development state of the CMS, this will showcase
+how easy it is to install / uninstall requirements even to the bleeding edge
+of a package. For this just run ``pip uninstall django-cms`` and download the
+`django-cms <https://github.com/divio/django-cms>`_ repository simiar to django-cms-101.
+Next install this version by running ``pip install -e ../path/to/repository/django-cms``.
 
 
 Install Django
 --------------
+
+With this, we only have the requirements set and have no project available to us.
+You can run ``pip freeze`` to see what is all available within your virtualenv.
+You'll see packages such as ``Django==1.8.8``. Lets make use of that and install
+our first Django application:
 
 #. run ``django-admin startproject mysite``
 #. move the files form within ``mysite/mysite/``  to ``mysite/``
@@ -58,12 +104,13 @@ Install Django
 Install django CMS
 ------------------
 
-We want to install it manually so you can get an overview of the entire installation
-process. You can also use the `djangocms-installer <https://github.com/nephila/djangocms-installer>`_
-or `Aldryn <aldryn.com>`_ to get started very quickly.
+django CMS is based on Django. So you can make use of everything that Django
+provides. You can easily implement your own Django apps into django CMS and
+vice-versa. We will not cover this in that tutorial, but it is worth mentioning.
 
-Go to `docs.django-cms.org <http://docs.django-cms.org/en/develop/>`_ and click
-on **How-to guides** and choose **Installing django CMS by hand**.
+Let's install django CMS into our Django setup. Go to `docs.django-cms.org
+<http://docs.django-cms.org/en/develop/>`_, click on **How-to guides**
+and choose **Installing django CMS by hand**.
 
 Follow the provided instructions to achieve the *bare minimum*:
 
@@ -105,6 +152,8 @@ to showcase the installation process and implement our theme later on.
 Running django CMS
 ------------------
 
+Wow, we have setup everything, lets check if our efforts bear fruit:
+
 #. run ``python manage.py migrate``
 #. run ``python manage.py runserver``
 #. visit `http://localhost:8000/ <http://localhost:8000/>`_ to open django CMS
@@ -112,21 +161,26 @@ Running django CMS
 You know have a running django CMS installation. You will be greeted with the
 django CMS installation screen once you have logged in using admin/admin.
 
-We need to add our first page to disable the installation screen. This screen
-will always appear if there are no pages around. Let's add ``Home`` as title
-and ``Hello World`` as example content. The content field will always add
-a text plugin to the created page.
+Lets add our first page to get rid of the installation screen. This screen
+will always appear if there are no pages around. If you have
+accidently closed the modal, just open it again by clicking on the link provided
+in the box.
+
+We add ``Home`` as title and ``Hello World`` as example content. The content
+field will always add a text plugin to the created page. Remember the
+djangocms_text_ckeditor we installed, this will be the first plugin we use.
 
 After this, make sure the page is published by clicking on "Publish page now".
 This might not be available, which indicates that the page is already published.
-Instead you will find the "View published" button.
+Instead you will find the "View published" button. The first page on a fresh install
+will always be published automatically for you. This will not be the case repeatedly.
 
 
 Lets configure
 --------------
 
-We will be using the "Start Bootstrap" theme through the entire tutorial. The
-theme has the following pagetree structure::
+We will be using the "Freelancer" theme through the entire tutorial. The theme
+has the following menu structure::
 
     - Portfolio
     - About
@@ -147,6 +201,23 @@ That's it from a configurations perspective, pretty simple or?
 
 Note that the toolbar can always be enabled by appending ``/?edit`` to the url
 or ``/?edit_off`` to disable it.
+
 If you whish to disable the toolbar entirely, just got to Site > Disable Toolbar.
 Certain states are stored within django CMS, such as if the side frame is open,
 which pages you opened or if the toolbar is visible or not etc.
+
+
+Outro
+-----
+
+This concludes the first chapter of "Themes 101 - Installation". We have setup
+django CMS and you can start discovering the various UI components of the toolbar
+the Django admin and the file structure. In the next tutorial we will have a look
+at static files and templates.
+
+If you have feedback or questions let me know in the comment section below.
+
+Thank you for watching be sure to like, favorite, subscribe and share for more
+videos on our channel.
+
+'Till next time.
