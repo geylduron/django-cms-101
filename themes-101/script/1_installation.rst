@@ -7,8 +7,8 @@ Foreword
 --------
 
 Welcome to Themes 101, a new format I'm starting in a set of django CMS 101
-tutorials for beginners. I'm Angelo, happy employee at Divio AG and core
-developer of the django CMS since 2011.
+tutorials for beginners. I'm Angelo aka "finalangel" on IRC or GitHub, employd
+at Divio AG and core developer of django CMS since 2011.
 
 The main goal of this tutorial will be to setup django CMS and implement the `Freelancer
 <http://startbootstrap.com/template-overviews/freelancer/>`_ Bootstrap theme [Showcase].
@@ -215,9 +215,10 @@ django CMS and you can start discovering the various UI components of the toolba
 the Django admin and the file structure. In the next tutorial we will have a look
 at static files and templates.
 
+You'll find all mentioned links and resources within the description of this video.
 If you have feedback or questions let me know in the comment section below.
 
 Thank you for watching be sure to like, favorite, subscribe and share for more
 videos on our channel.
 
-'Till next time.
+'Till next time. Bye
