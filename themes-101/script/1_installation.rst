@@ -76,6 +76,9 @@ GitHub.
 Once you have setup the repository, place it into your working space, open your
 Terminal and ``cd`` to that folder. Next we need to run some commands:
 
+NOTE::
+    I might actually show everything from scratch, rather then copy this project.
+
 #. cd ``themes-101/project``
 #. run ``virtualenv env``
    or ``vf new django-cms-101`` for virtualfish
